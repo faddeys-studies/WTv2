@@ -23,7 +23,7 @@ function compareObjects(expectedObj, actualObj) {
 		if(arr2 == null) {
 			return "Object has empty field \""+key+"\".";
 		}
-		if(arr1.length == arr2.length) {
+		if(arr1.length !== arr2.length) {
 			return "Object field \""+key+"\" with invalid length (expected length - "+arr1.length+", actual length - "+arr2.length+").";
 		}
 		//Now compare two arrays content
@@ -127,7 +127,7 @@ function runTask5() {
 	var emptyObject = {};
 	var result5 = mergeObjects([emptyObject, emptyObject, emptyObject, emptyObject, emptyObject, emptyObject, emptyObject]);
 
-	assertEqualObjects(result4, emptyObject, "Case #5");
+	assertEqualObjects(result5, emptyObject, "Case #5");
 
 	console.log("Done!");
 }
