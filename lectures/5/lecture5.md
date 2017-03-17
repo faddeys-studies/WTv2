@@ -689,26 +689,3 @@ function checkScope() {
 checkScope()(); // => ? <span class="fragment">"local"</span>
     </code></pre>
 </div>
-
-
-
-### Замыкания: инкапсуляция данных
-
-<pre><code data-trim data-noescape class="javascript">
-let scope = "global";
-function checkScope() {
-    var scope = "local";
-
-    return {
-        getScopeVar()  { return scope; },
-        setScopeVar(s) { scope = s; }
-    };
-}
-let obj = checkScope();
-obj.getScopeVar();            // => ? <span="fragment">"local"</span>
-obj.setScopeVar("new scope");
-obj.getScopeVar();            // => ? <span="fragment">"new scope"</span>
-
-var obj2 = checkScope();
-obj2.getScopeVar();           // => ? <span="fragment">"local"!</span>
-</code></pre>
