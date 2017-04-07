@@ -57,8 +57,9 @@ filterTable("albums_table", {year: "1980", genre: "rock"});
 ```javascript
 var button = new SwitchButton("chatPermissionsButton");
 button.getValue(); //Получить текущий текст на кнопке;
-button.switchValue(); //Переключить текст на кнопке, выбирая следующий из списка "options";
+button.setValue(); //Изменить текст на кнопке;
 button.getDiv(); //Получить элемент DIV, внутри которого располагается кнопка;
+button.switchValue(); //Переключить текст на кнопке, выбирая следующий из списка "options";
 ```
 
 Текст на кнопке должен определяться следующим образом:
