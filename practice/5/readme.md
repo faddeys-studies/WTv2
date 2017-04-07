@@ -41,7 +41,10 @@ filterTable("albums_table", {year: "1980", genre: "rock"});
 Необходимо написать класс `SwitchButton`, который будет инкапсулировать визуальный компонент кнопки-переключателя. В HTML коде странице должен быть элемент:
 
 ```html
-<div class="switch-button" id="chatPermissionsButton" data-options="all;friends;friends of friends;only me" data-default-value="all">
+<div class="switch-button"
+     id="chatPermissionsButton"
+     data-options="all;friends;friends of friends;only me"
+     data-default-value="all">
 </div>
 ```
 
