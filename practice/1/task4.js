@@ -1,6 +1,6 @@
 function getNthItem(a, n) {
-	//Change this function
-	return 0;
+	if (n < 0) return 0;
+	return a * (1-Math.pow(-2, n)) / 3;
 }
 
 function assert(expression, message) {

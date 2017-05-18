@@ -1,6 +1,22 @@
+function digitToRoman(digit, roman1, roman5, roman10) {
+    if (digit <= 3) {
+        return roman1.repeat(digit);
+    } else if (digit <= 5) {
+        return roman1.repeat(5-digit) + roman5;
+    } else if (digit <= 8) {
+        return roman5 + roman1.repeat(digit-5);
+    } else {
+        return roman1.repeat(10-digit) + roman10;
+    }
+}
+
+
 function convertToRoman(n) {
-	//Change this function
-	return "X";
+	if (n > 3999) throw n+" cannot be converted to Roman";
+	return digitToRoman(Math.floor(n/1000), 'M', null, null)
+         + digitToRoman(Math.floor((n%1000)/100), 'C', 'D', 'M')
+         + digitToRoman(Math.floor((n%100)/10), 'X', 'L', 'C')
+         + digitToRoman(Math.floor(n%10), 'I', 'V', 'X');
 }
 
 function assert(expression, message) {

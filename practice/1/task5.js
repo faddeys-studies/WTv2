@@ -1,6 +1,7 @@
 function sumDigits(n) {
-	//Change this function
-	return 0;
+	return (''+n).split('')
+        .map(c => parseInt(c))
+        .reduce((a, b) => a+b, 0);
 }
 
 function assert(expression, message) {

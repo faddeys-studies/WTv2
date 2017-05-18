@@ -1,11 +1,10 @@
-function getNumSquares(n) {
-	//Change this function
-	return 0;
+function getNumSquares(side1, side2, squareSide) {
+    return Math.floor(side1 / squareSide) * Math.floor(side2 / squareSide);
 }
 
-function getFreeSpace(n) {
-	//Change this function
-	return 0;
+function getFreeSpace(side1, side2, squareSide) {
+    let nSquares = getNumSquares(side1, side2, squareSide);
+	return side1 * side2 - (squareSide * squareSide * nSquares);
 }
 
 function assert(expression, message) {

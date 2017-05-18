@@ -1,6 +1,15 @@
+function leadingZeros(int, maxlen) {
+    let intS = ""+int;
+    let pad = "0".repeat(Math.max(0, maxlen-intS.length));
+    return pad + intS;
+}
+
+
 function getTime(n) {
-	//Change this function
-	return "";
+    let hours = Math.floor(n / 3600) % 24,
+        mins = Math.floor(n / 60) % 60,
+        secs = n % 60;
+	return `${leadingZeros(hours, 2)}:${leadingZeros(mins, 2)}:${leadingZeros(secs, 2)}`;
 }
 
 function assert(expression, message) {

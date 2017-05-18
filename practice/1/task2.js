@@ -1,6 +1,5 @@
 function getMinutes(n) {
-	//Change this function
-	return 0;
+	return Math.floor((n % 3600) / 60);
 }
 
 function assert(expression, message) {
