@@ -1,6 +1,10 @@
 function generateCounter(n) {
+	let count = 0;
+
 	function counter() {
-		return 0;
+		let value = count;
+		count += n;
+		return value;
 	}
 
 	return counter;

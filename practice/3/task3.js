@@ -1,5 +1,9 @@
 ﻿function getSongs(data) {
-	return [];
+	return data
+        .filter(entry => entry.size > 0)
+        .filter(entry => entry.filename.toLowerCase().endsWith('.mp3'))
+        .map(entry => entry.filename.substr(0, entry.filename.length-4).split(' - '))
+        .filter(entry => entry.length == 2);
 }
 
 function assertEqual(expectedVal, actualVal, message) {

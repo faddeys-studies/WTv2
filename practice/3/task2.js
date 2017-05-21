@@ -1,5 +1,35 @@
+function formatPolynomialTerm(coeff, power, requireSign) {
+    if (coeff == 0) return "";
+
+    let omitX = (power == 0);
+    let omitCoeff = !omitX && ((coeff == 1) || (coeff == -1));
+    let prependPlus = (coeff > 0) && requireSign;
+    let prependMinus = (coeff == -1) && omitCoeff;
+    let omitMul = omitX || omitCoeff;
+    let omitPow = (power == 0) || (power == 1);
+
+    let result = '';
+    if (prependPlus) result = '+'+result;
+    if (prependMinus) result = '-'+result;
+    if (!omitCoeff) result += coeff;
+    if (!omitMul) result += '*';
+    if (!omitX) result += 'x';
+    if (!omitPow) result += '^'+power;
+
+    return result;
+}
+
+
 function getPolynomial() {
-	return "0";
+
+    if (arguments.length == 0) return "0";
+
+    let result = '';
+    for (let i = 0; i < arguments.length; i++) {
+        let power = arguments.length-i-1;
+        result += formatPolynomialTerm(arguments[i], power, result.length > 0);
+    }
+    return result;
 }
 
 function assertEqual(expectedVal, actualVal, message) {

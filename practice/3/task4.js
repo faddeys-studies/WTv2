@@ -1,5 +1,17 @@
 function getBoundingBox(data) {
-	return {};
+	return data.reduce(
+		(rect, [x, y]) => ({
+			top:    Math.max(rect.top, y),
+			bottom: Math.min(rect.bottom, y),
+			left:   Math.min(rect.left, x),
+			right:  Math.max(rect.right, x)
+		}), {
+            top:   -Number.MAX_VALUE,
+            bottom: Number.MAX_VALUE,
+            left:   Number.MAX_VALUE,
+            right: -Number.MAX_VALUE
+		}
+	);
 }
 
 function assertEqual(expectedVal, actualVal, message) {

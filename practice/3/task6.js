@@ -1,5 +1,8 @@
 function getReversed(matrix) {
-	return [[6.2]];
+	let matrixCopy = matrix.map(row => row.slice());
+	matrixCopy.forEach(row => row.reverse());
+	matrixCopy.reverse();
+	return matrixCopy;
 }
 
 function assertEqualMatrix(actualVal, expectedVal, message) {

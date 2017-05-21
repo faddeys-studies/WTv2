@@ -1,5 +1,38 @@
+function isPositiveInt(str) {
+    let n = Math.floor(Number(str));
+    return String(n) === str && n > 0;
+}
+
 function runMarsohod(commands) {
-	return [0, 0];
+    const NORTH = 0,
+          WEST =  1,
+          SOUTH = 2,
+          EAST =  3;
+
+    function applyCommand({pos, dir}, cmd) {
+        cmd = cmd.COMMAND;
+        let speed = 0;
+        if (cmd.startsWith("GO ")) {
+            cmd = cmd.substr(3);
+            if (isPositiveInt(cmd)) {
+                speed += Number(cmd);
+            } else return {pos, dir};
+        } else if (cmd == "TURN LEFT") dir += 1;
+        else if (cmd == "TURN RIGHT") dir -= 1;
+        dir = (dir+4)%4;
+        if (speed == 0) return {pos, dir};
+        switch (dir) {
+            case NORTH: pos.y += speed; break;
+            case EAST:  pos.x += speed; break;
+            case SOUTH: pos.y -= speed; break;
+            case WEST:  pos.x -= speed; break;
+        }
+        return {pos, dir};
+    }
+
+    commands.sort((cmd1, cmd2) => cmd1.ORDER > cmd2.ORDER ? 1 : -1);
+	let result = commands.reduce(applyCommand, {pos: {x: 0, y: 0}, dir: NORTH});
+    return [result.pos.x, result.pos.y];
 }
 
 function assertEqual(expectedVal, actualVal, message) {
