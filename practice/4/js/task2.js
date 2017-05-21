@@ -1,7 +1,13 @@
 
 
-function SwitchButton(wrapperId) {
-    this._wrapper = document.getElementById(wrapperId);
+function SwitchButton(wrapper) {
+    if (typeof wrapper == 'string')   {
+        this._wrapper = document.getElementById(wrapper);
+        this._wrapperId = wrapper;
+    } else {
+        this._wrapper = wrapper;
+        this._wrapperId = wrapper.getAttribute('id');
+    }
 
     if (!this._wrapper) throw "SwitchButton init: wrapping element not found";
 
@@ -16,7 +22,8 @@ function SwitchButton(wrapperId) {
     var defaultValue = this._wrapper.getAttribute('data-default-value');
     var defaultValueIsOk = !!defaultValue && this._options.includes(defaultValue);
 
-    var valueFromStorage = window.localStorage.getItem(wrapperId+'_SwitchButton');
+    if (!!this._wrapperId)
+        var valueFromStorage = window.localStorage.getItem(this._wrapperId+'_SwitchButton');
     var valueFromStorageIsOk = !!valueFromStorage && this._options.includes(valueFromStorage);
 
     if (valueFromStorageIsOk) this._value = valueFromStorage;
@@ -35,12 +42,20 @@ SwitchButton.prototype.setValue = function(newValue) {
     this._valueIndex = this._options.indexOf(newValue);
     this._value = newValue;
     this._button.value = newValue;
+    if (!!this._wrapperId) {
+        window.localStorage.setItem(this._wrapperId+'_SwitchButton', this._value);
+    }
 };
 SwitchButton.prototype.getDiv = function () { return this._wrapper; };
 SwitchButton.prototype.switchValue = function () {
     if (!this._switchable) return;
     var nextIndex = (this._valueIndex + 1) % this._options.length;
     this.setValue(this._options[nextIndex]);
+};
+SwitchButton.createButtons = function () {
+    var divs = document.querySelectorAll('div[data-widget="SwitchButton"]');
+    if (divs.length == 0) return;
+    divs.forEach(div => new SwitchButton(div));
 };
 
 
