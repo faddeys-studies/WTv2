@@ -1,6 +1,7 @@
 function filterUnique(data) {
-	//Change this function
-	return [];
+	let counts = {};
+	data.forEach(x => counts[x] = 1 + (counts[x]|0));
+	return data.filter(x => counts[x] == 1);
 }
 
 function assertEqualArrays(expectedVal, actualVal, message) {

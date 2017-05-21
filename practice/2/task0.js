@@ -1,6 +1,10 @@
 function getStats(data) {
-	//Change this function
-	return [0, 0, 0];
+    if (data.length == 0) return [0, 0, 0];
+	let result = data.reduce(
+		    ([max, min, sum], x) => [Math.max(x, max), Math.min(x, min), sum+x],
+            [-Number.MAX_VALUE, Number.MAX_VALUE, 0]);
+    result[2] /= data.length;
+	return result;
 }
 
 function assertEqualArrays(expectedVal, actualVal, message) {

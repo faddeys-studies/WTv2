@@ -1,6 +1,23 @@
 function getSafePawns(pawns) {
-  //Change this function
-  return 0;
+    let checked = new Set();
+    let counter = 0;
+    let letters = 'abcdefgh';
+
+    function check(x_, y_) {
+        let px = letters[x_]+y_;
+        if (pawns.has(px) && !checked.has(px)) {
+            counter++;
+            checked.add(px);
+        }
+    }
+
+    pawns.forEach(p => {
+        let x = letters.indexOf(p[0]);
+        let y = p[1]|0;
+        check(x-1, y+1);
+        check(x+1, y+1);
+    });
+    return counter;
 }
 
 function assertEqual(actualVal, expectedVal, message) {

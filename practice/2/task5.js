@@ -1,6 +1,12 @@
-function mergeObjects(obj1) {
-	//Change this function
-	return {};
+function mergeObjects(objects) {
+    let merged = {};
+	objects.forEach(obj => {
+	    Object.keys(obj).forEach(key => {
+	        merged[key] = (merged[key] || []);
+	        merged[key].push(obj[key]);
+        });
+    });
+    return merged;
 }
 
 function assertEqualObjects(expectedVal, actualVal, message) {

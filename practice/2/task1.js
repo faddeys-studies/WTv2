@@ -1,6 +1,8 @@
 function calcSum(data) {
-	//Change this function
-	return 0;
+	if (data.length == 0) return 0;
+	return data[data.length-1] * data
+            .filter((x, i)=> i % 2 == 0)
+            .reduce((a, b) => a+b, 0)
 }
 
 function assertEqual(expectedVal, actualVal, message) {

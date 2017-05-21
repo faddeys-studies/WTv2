@@ -1,6 +1,5 @@
-function getTransposed(matrix1) {
-	//Change this function
-	return [[6.2]];
+function getTransposed(matrix) {
+	return [...matrix[0]].map((_,i) => matrix.map(row => row[i]))
 }
 
 function assertEqualMatrix(expectedVal, actualVal, message) {

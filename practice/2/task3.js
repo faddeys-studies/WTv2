@@ -1,6 +1,11 @@
 function getTopLetter(text) {
-    //Change this function
-    return text[0];
+    let counts = {};
+    let letters = text.split('');
+    letters.forEach(x => counts[x] = 1 + (counts[x]|0));
+    return Object.keys(counts).reduce(
+        (maxkey, key) => (counts[key] > counts[maxkey] ? key : maxkey),
+        letters[0]
+    )
 }
 
 function assertAnswerInArray(expectedArray, actualVal, message) {
