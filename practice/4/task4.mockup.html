@@ -2,39 +2,41 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Task.4 - SwitchButton enhanced</title>
+	<title>Task.4 - Puzzle15 Game</title>
 	<style>
-	div.table15-container {
-		text-align: center;
-	}
-	table.table15 {
-		border: 1px solid #888;
-		margin-left: auto;
-		margin-right: auto;
-	}
-	table.table15 td {
-		width: 50px;
-		height: 50px;
-		background: #AAA
-	}
+		div.table15-container {
+			text-align: center;
+		}
+		table.table15 {
+			border: 1px solid #888;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		table.table15 td {
+			width: 50px;
+			height: 50px;
+			background: #AAA
+		}
 
-	table.table15 a.tile {
-		display: inline-block;
-		width: 100%;
-		height: 100%;
-		background: white;
-		text-align: center;
-		line-height: 50px;
-		font-weight: bold;
-		font-family: arial;
-		font-size: 16pt;
-		text-decoration: none;
-	}
-	div.buttons-row {
-		text-align: center;
-		padding-top: 20px;
-	}
+		table.table15 a.tile {
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			background: white;
+			text-align: center;
+			line-height: 50px;
+			font-weight: bold;
+			font-family: arial;
+			font-size: 16pt;
+			text-decoration: none;
+		}
+		div.buttons-row {
+			text-align: center;
+			padding-top: 20px;
+		}
 	</style>
+	<script src="js/task4.js"></script>
+	<script src="js/puzzle15-ui.js"></script>
 </head>
 <body>
 
@@ -69,8 +71,18 @@
 	<div class="buttons-row">
 		<input type="button" class="shuffle-button" value="Перемешать" />
 		<input type="button" class="reset-button" value="Сбросить" />
-	<div>
+	</div>
 </div>
+
+<script language="JavaScript">
+	(function () {
+		let r15ctl = new Puzzle15Controller('.table15');
+		r15ctl.game.shuffleState();
+
+		document.querySelector('.shuffle-button').onclick = () => r15ctl.game.shuffleState();
+		document.querySelector('.reset-button').onclick = () => r15ctl.game.resetState();
+    })()
+</script>
 
 </body>
 </html>
